@@ -1,0 +1,3 @@
+[console_scripts]
+lm-eval = main:main
+lm_eval = main:main

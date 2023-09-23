@@ -1,0 +1,91 @@
+Metadata-Version: 2.1
+Name: lm-eval
+Version: 1.0.0
+Summary: A framework for evaluating language models
+Author-email: EleutherAI <contact@eleuther.ai>
+License: MIT
+Project-URL: Homepage, https://github.com/EleutherAI/lm-evaluation-harness
+Project-URL: Repository, https://github.com/EleutherAI/lm-evaluation-harness
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: accelerate>=0.21.0
+Requires-Dist: evaluate
+Requires-Dist: datasets>=2.0.0
+Requires-Dist: evaluate>=0.4.0
+Requires-Dist: jsonlines
+Requires-Dist: numexpr
+Requires-Dist: omegaconf>=2.2
+Requires-Dist: peft>=0.2.0
+Requires-Dist: pybind11>=2.6.2
+Requires-Dist: pycountry
+Requires-Dist: pytablewriter
+Requires-Dist: rouge-score>=0.0.4
+Requires-Dist: sacrebleu>=1.5.0
+Requires-Dist: scikit-learn>=0.24.1
+Requires-Dist: sqlitedict
+Requires-Dist: torch>=1.8
+Requires-Dist: tqdm-multiprocess
+Requires-Dist: transformers>=4.1
+Requires-Dist: zstandard
+Requires-Dist: radgraph
+Requires-Dist: f1chexbert
+Requires-Dist: Pillow
+Requires-Dist: cryptography
+Requires-Dist: requests
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Provides-Extra: linting
+Requires-Dist: flake8; extra == "linting"
+Requires-Dist: pylint; extra == "linting"
+Requires-Dist: mypy; extra == "linting"
+Requires-Dist: pre-commit; extra == "linting"
+Provides-Extra: testing
+Requires-Dist: pytest; extra == "testing"
+Requires-Dist: pytest-cov; extra == "testing"
+Requires-Dist: pytest-xdist; extra == "testing"
+Provides-Extra: multilingual
+Requires-Dist: nagisa>=0.2.7; extra == "multilingual"
+Requires-Dist: jieba>=0.42.1; extra == "multilingual"
+Provides-Extra: sentencepiece
+Requires-Dist: sentencepiece>=0.1.98; extra == "sentencepiece"
+Requires-Dist: protobuf>=4.22.1; extra == "sentencepiece"
+Requires-Dist: pycountry; extra == "sentencepiece"
+Provides-Extra: promptsource
+Requires-Dist: promptsource@ git+https://github.com/bigscience-workshop/promptsource.git#egg=promptsource ; extra == "promptsource"
+Provides-Extra: gptq
+Requires-Dist: auto-gptq[triton]@ git+https://github.com/PanQiWei/AutoGPTQ ; extra == "gptq"
+Provides-Extra: anthropic
+Requires-Dist: anthropic; extra == "anthropic"
+Provides-Extra: openai
+Requires-Dist: openai; extra == "openai"
+Requires-Dist: tiktoken; extra == "openai"
+Provides-Extra: all
+Requires-Dist: lm_eval[dev]; extra == "all"
+Requires-Dist: lm_eval[testing]; extra == "all"
+Requires-Dist: lm_eval[linting]; extra == "all"
+Requires-Dist: lm_eval[multilingual]; extra == "all"
+Requires-Dist: lm_eval[sentencepiece]; extra == "all"
+Requires-Dist: lm_eval[promptsource]; extra == "all"
+Requires-Dist: lm_eval[gptq]; extra == "all"
+Requires-Dist: lm_eval[anthropic]; extra == "all"
+Requires-Dist: lm_eval[openai]; extra == "all"
+
+conda create -n HF-harness python=3.9
+ conda activate HF-harness
+
+
+python main.py \
+    --model hf \
+    --model_args pretrained=JB/HF_RRG_harness \
+    --tasks report_generation_mimic_cxr \
+    --device cuda:0 \
+    --limit 5

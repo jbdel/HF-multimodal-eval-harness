@@ -1,0 +1,22 @@
+task: report_generation_mimic_cxr
+dataset_path: gAAAAABlDoSbc76gYwQ4zgDHiY7uxoMLjMwsfN4FBZK0BH2f8-Ulr6Rh5ecaVrsUBiKy1NgsIs-0A-JzhBcLbpNPDjl1QG8xahtudSxE0efAjIB1EKJtpJI=
+dataset_name: null
+dataset_kwargs:
+  dataset_security:
+    security: physionet
+    username: doom3jbd
+    password: awec123456po
+output_type: greedy_until
+test_split: test
+doc_to_text: "{{image}}"
+doc_to_target: "{{impression}}"
+metric_list:
+  - metric: !function metrics.rougeL
+    aggregation: !function metrics.AggRougeL
+    higher_is_better: true
+  - metric: !function metrics.rouge1
+    aggregation: !function metrics.AggRouge1
+    higher_is_better: true
+  - metric: !function metrics.rouge2
+    aggregation: !function metrics.AggRouge2
+    higher_is_better: true
